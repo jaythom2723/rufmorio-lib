@@ -1,0 +1,9 @@
+{
+    "name": "rufmorio-lib",
+    "version": "0.0.1",
+    "title": "RUFMOrio Library",
+    "author": "Rify",
+    "factorio_version": "2.0",
+    "dependencies": ["base >= 1.1"],
+    "description": "A list of common functions and more for the RUFMOrio overhaul pack."
+}
