@@ -17,7 +17,8 @@ GROUP = setmetatable({}, {
             subgroup = {
                 type = "item-subgroup",
                 name = sg.name,
-                group = group.name
+                group = group.name,
+				order = sg.order or nil
             }
             data:extend{subgroup}
         end

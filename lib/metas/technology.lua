@@ -1,9 +1,3 @@
-TECHNOLOGY = setmetatable(data.raw.technology, {
-    __call = function(self, technology)
-        data:extend{technology}
-    end
-})
-
 local metas = {}
 
 metas.add_prereq = function(self, prereq_technology_name)
@@ -52,4 +46,21 @@ metas.add_pack = function(self, science_pack_name)
     return self
 end
 
-return metas
+TECHNOLOGY = setmetatable(data.raw.technology, {
+    __call = function(self, technology)
+        local ttype = type(technology)
+		if ttype == "string" then
+			if not self[technology] then error("Technology " .. technology .. " does not exist!") end
+			technology = self[technology]
+		elseif ttype == "table" then
+			technology.type = "technology"
+			data:extend{technology}
+		else
+			error("Invalid type " .. ttype)
+		end
+
+		return setmetatable(technology, metas)
+	end
+})
+
+return {__index=metas}
